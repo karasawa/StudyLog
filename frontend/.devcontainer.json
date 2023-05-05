@@ -1,0 +1,17 @@
+{
+	"name": "frontend",
+	"dockerComposeFile": "../docker-compose.yml",
+	"workspaceFolder": "/frontend",
+	"service": "frontend",
+	"runServices": [
+		"frontend"
+	],
+	"customizations": {
+		"vscode": {	
+			"extensions": [
+				"esbenp.prettier-vscode"
+			]
+		}
+	},
+	"shutdownAction": "stopCompose"
+}
