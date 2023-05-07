@@ -2,11 +2,11 @@ from typing import Union
 
 from fastapi import FastAPI, Query, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 from fastapi.security import OAuth2PasswordBearer
-from routers import user 
+from routers import user, auth
 
 app = FastAPI()
+app.include_router(auth.router)
 app.include_router(user.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

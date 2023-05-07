@@ -10,10 +10,10 @@ class User(database.Base):
                         autoincrement=True)
     name = sa.Column("name",
                      sa.Text,
-                     nullable=False)
+                     nullable=True)
     age = sa.Column("age",
                     sa.Integer,
-                    nullable=False)
+                    nullable=True)
     email = sa.Column("email",
                       sa.Text,
                       nullable=False)

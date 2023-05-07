@@ -6,3 +6,5 @@ psycopg2
 python-jose
 cryptography
 passlib
+python-multipart
+python-dotenv

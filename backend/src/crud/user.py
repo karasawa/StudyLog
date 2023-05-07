@@ -5,6 +5,15 @@ from sqlalchemy import select
 import models.models as model
 import schemas.user as user_schema
 
+def get_user_with_email(
+        db: Session, request: user_schema.UserCreate
+) -> Optional[model.User]:
+    result: Result = db.execute(
+        select(model.User).filter(model.User.email == request.email)
+    )
+    user: Optional[Tuple[model.User]] = result.first()
+    return user[0] if user is not None else None
+
 def get_user(
         db: Session, user_id: int
 ) -> Optional[model.User]:
@@ -12,7 +21,6 @@ def get_user(
         select(model.User).filter(model.User.user_id == user_id)
     )
     user: Optional[Tuple[model.User]] = result.first()
-    print(user)
     return user[0] if user is not None else None
 
 def get_users(db: Session) -> List[Tuple[int, str, int, str, str]]:
@@ -28,9 +36,9 @@ def get_users(db: Session) -> List[Tuple[int, str, int, str, str]]:
     return result.all()
 
 def create_user(
-    db: Session, user_create: user_schema.UserCreate
+    db: Session, request: user_schema.UserCreate
 ) -> model.User:
-    user = model.User(**user_create.dict())
+    user = model.User(**request)
     db.add(user)
     db.commit()
     db.refresh(user)
