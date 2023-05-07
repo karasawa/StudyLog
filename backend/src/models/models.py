@@ -1,4 +1,4 @@
-import models.database as model
+import database as model
 import sqlalchemy as sa
 
 
@@ -17,3 +17,6 @@ class User(model.Base):
     email = sa.Column("email",
                       sa.Text,
                       nullable=False)
+    password = sa.Column("password",
+                         sa.Text,
+                         nullable=False)

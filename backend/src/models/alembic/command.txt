@@ -1,0 +1,17 @@
+マイグレーションファイルの作成
+alembic revision --autogenerate -m ""
+
+マイグレーション実行
+alembic upgrade head
+
+ダウングレード（数値指定での戻し）
+alembic downgrade -1
+
+ダウングレード（初期状態への戻し）
+alembic downgrade base
+
+現状のマイグレーションバージョンの確認
+alembic current
+
+マイグレーション履歴の確認
+alembic history --verbose

@@ -1,12 +1,26 @@
-from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List, Tuple
+from sqlalchemy.orm import Session
+from sqlalchemy.engine import Result
+from sqlalchemy import select
 import models.models as model
 import schemas.user as user_schema
 
-async def create_user(
-    db: AsyncSession, user_create: user_schema.UserCreate
-) ->model.User:
+def get_users(db: Session) -> List[Tuple[int, str, int, str]]:
+    result: Result = db.execute(
+        select(
+            model.User.user_id,
+            model.User.name,
+            model.User.age,
+            model.User.email
+        )
+    )
+    return result.all()
+
+def create_user(
+    db: Session, user_create: user_schema.UserCreate
+) -> model.User:
     user = model.User(**user_create.dict())
     db.add(user)
-    await db.commit()
-    await db.refresh(user)
+    db.commit()
+    db.refresh(user)
     return user
