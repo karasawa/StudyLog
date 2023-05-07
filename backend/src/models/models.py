@@ -1,8 +1,8 @@
-import database as model
+from . import database 
 import sqlalchemy as sa
 
 
-class User(model.Base):
+class User(database.Base):
     __tablename__ = "users"
     user_id = sa.Column("user_id",
                         sa.Integer,
