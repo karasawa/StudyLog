@@ -6,7 +6,7 @@ import models.models as model
 import schemas.user as user_schema
 
 def get_user_with_email(
-        db: Session, request: user_schema.UserCreate
+        db: Session, request: user_schema.UserBase
 ) -> Optional[model.User]:
     result: Result = db.execute(
         select(model.User).filter(model.User.email == request.email)

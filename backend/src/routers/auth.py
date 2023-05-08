@@ -12,7 +12,8 @@ from services.jwt import (
     get_hashed_password,
     create_access_token,
     create_refresh_token,
-    verify_password
+    verify_password,
+    get_current_user
 )
 
 router = APIRouter()
@@ -49,3 +50,7 @@ def login(request: user_schema.UserBase, db: Session = Depends(get_db)):
         "access_token": create_access_token(user.email),
         "refresh_token": create_refresh_token(user.email),
     }
+
+@router.get("/me")
+def index(current_user: user_schema.UserBase = Depends(get_current_user)):
+     return current_user
