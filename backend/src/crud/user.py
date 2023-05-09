@@ -27,8 +27,6 @@ def get_users(db: Session) -> List[Tuple[int, str, int, str, str]]:
     result: Result = db.execute(
         select(
             model.User.user_id,
-            model.User.name,
-            model.User.age,
             model.User.email,
             model.User.password
         )
@@ -47,8 +45,6 @@ def create_user(
 def update_user(
     db: Session, user_create: user_schema.UserCreate, original: model.User
 ) -> model.User:
-    original.name = user_create.name
-    original.age = user_create.age
     original.email = user_create.email
     original.password = user_create.password
     db.add(original)

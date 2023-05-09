@@ -8,3 +8,4 @@ cryptography
 passlib
 python-multipart
 python-dotenv
+sqlalchemy

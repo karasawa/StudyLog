@@ -1,7 +1,9 @@
-import React from 'react'
+import AuthForm from '../../components/molecules/AuthForm'
 
 export default function Auth() {
   return (
-    <div>Auth</div>
+    <div>
+        <AuthForm />
+    </div>
   )
 }

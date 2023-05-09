@@ -57,7 +57,7 @@ def get_current_user(token: str = Depends(reuseable_oauth), db: Session = Depend
             token, JWT_SECRET_KEY, algorithms=[ALGORITHM]
         )
         exp = payload['exp']
-        sub: str = payload['sub']
+        sub = payload['sub']
         if datetime.fromtimestamp(exp) < datetime.now():
             raise HTTPException(
                 status_code = status.HTTP_401_UNAUTHORIZED,

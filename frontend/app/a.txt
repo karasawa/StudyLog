@@ -1,0 +1,10 @@
+universal-cookie
+@fullcalendar/react
+@fullcalendar/daygrid
+@fullcalendar/core
+@fullcalendar/interaction
+@mui/material
+@emotion/react
+@emotion/styled
+zustand
+@mui/icons-material
