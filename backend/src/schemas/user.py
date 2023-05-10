@@ -18,4 +18,3 @@ class UserCreateResponse(UserCreate):
 
     class Config:
         orm_mode = True
-

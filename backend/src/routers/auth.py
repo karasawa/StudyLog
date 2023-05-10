@@ -20,7 +20,7 @@ def signup(request: user_schema.UserCreate, db: Session = Depends(get_db)):
         )
     user = {
         'email': request.email,
-        'password': jwt_service.get_hashed_password(request.password),
+        'password': jwt_service.get_hashed_password(request.password)
     }
     return user_crud.create_user(db, user)
 

@@ -1,18 +1,21 @@
 from pydantic import BaseModel
 
 class StudyBase(BaseModel):
-    user: str
     date: str
     content: str
     time: str
 
 class Study(StudyBase):
+    user: str
     id: int
 
     class Config:
         orm_mode = True
 
 class StudyCreate(StudyBase):
+    user: str
+
+class StudyUpdate(StudyBase):
     pass
 
 class StudyCreateResponse(StudyCreate):
