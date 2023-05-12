@@ -4,6 +4,7 @@ class StudyBase(BaseModel):
     date: str
     content: str
     time: str
+    memo: str
 
 class Study(StudyBase):
     user: str

@@ -9,9 +9,6 @@ def get_study(
 ) -> Optional[model.Study]:
     result: Result = db.query(model.Study).filter(model.Study.id == id)
     study: Optional[Tuple[model.Study]] = result.first()
-    print('aaaaaaa')
-    print(result.first())
-    print(study)
     return study if study is not None else None
 
 def get_studies(

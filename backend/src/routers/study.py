@@ -20,7 +20,8 @@ def create_study(request: study_schema.StudyCreate, db: Session = Depends(get_db
         'user': request.user,
         'date': request.date,
         'content': request.content,
-        'time': request.time
+        'time': request.time,
+        'memo': request.memo
     }
     return study_crud.create_study(db, study)
 

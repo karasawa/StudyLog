@@ -32,4 +32,7 @@ class Study(database.Base):
     time = sa.Column("time",
                      sa.Text,
                      nullable=False)
+    memo = sa.Column("memo",
+                     sa.Text,
+                     nullable=True)
     
