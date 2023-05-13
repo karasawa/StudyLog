@@ -33,14 +33,26 @@ export default function AuthForm() {
   }
 
   return (
-    <div>
-      <label htmlFor="email">メールアドレス</label>
-      <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-      <label htmlFor="password">パスワード</label>
-      <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-      <button onClick={() => clickHandler()}>{isLogin ? "ログイン" : "新規登録"}</button>
-      <h5 onClick={() => setIsLogin(!isLogin)}>{isLogin ? "アカウントを作成する" : "ログインへ戻る"}</h5>
-      <h5>{errFlag ? "認証が失敗しました" : ""}</h5>
+    <div className="h-screen flex justify-center items-center font-bold text-stone-600 bg-stone-600">
+      <div className="h-1/2 flex flex-col justify-evenly items-center p-5 rounded-md border-stone-400">
+        <div className="text-xl text-white">StudyLog</div>
+        <input type="text" id="email" placeholder="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)}
+               className="outline-none p-2 rounded-md border-stone-400 border-2"
+        />
+        <input type="password" id="password" placeholder="パスワード" value={password} onChange={(e) => setPassword(e.target.value)}
+               className="outline-none p-2 rounded-md border-stone-400 border-2"
+        />
+        <div className="text-red-400 text-sm">{errFlag ? "認証に失敗しました" : ""}</div>
+        <button onClick={() => clickHandler()}
+               className=" text-white w-full p-2 rounded-md bg-stone-800 " 
+        >{isLogin ? "ログイン" : "新規登録"}</button>
+        <div className="flex justify-evenly items-center w-full">
+          <div className="w-1/4 bg-white" style={{height: "0.2px"}}></div>
+          <div className="text-white text-sm">または</div>
+          <div className="w-1/4 bg-white" style={{height: "0.2px"}}></div>
+        </div>
+        <div className="text-stone-800 cursor-pointer border-stone-800 hover:border-b-2" onClick={() => setIsLogin(!isLogin)}>{isLogin ? "アカウントを新規登録する" : "ログインへ戻る"}</div>
+      </div>
     </div>
   )
 }

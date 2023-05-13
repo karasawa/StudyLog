@@ -35,4 +35,16 @@ class Study(database.Base):
     memo = sa.Column("memo",
                      sa.Text,
                      nullable=True)
-    
+
+class StudyContents(database.Base):
+    __tablename__ = "study_contents"
+    id = sa.Column("id",
+                   sa.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    user = sa.Column("user",
+                      sa.Text,
+                      nullable=False)
+    content = sa.Column("content",
+                     sa.Text,
+                     nullable=False)

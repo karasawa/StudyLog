@@ -15,9 +15,11 @@ def get_studies(current_user: user_schema.UserBase = Depends(jwt_service.get_cur
     return study_crud.get_studies(db, current_user)
 
 @router.post("/study", summary="Create new study", response_model=study_schema.StudyCreateResponse)
-def create_study(request: study_schema.StudyCreate, db: Session = Depends(get_db)):
+def create_study(request: study_schema.StudyBase,
+                 current_user: user_schema.UserBase = Depends(jwt_service.get_current_user),
+                 db: Session = Depends(get_db)):
     study = {
-        'user': request.user,
+        'user': current_user.email,
         'date': request.date,
         'content': request.content,
         'time': request.time,
