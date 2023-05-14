@@ -31,6 +31,22 @@ type State = {
       user: string
       content: string
     }[]) => void
+    recentReportList: {
+      id: number
+      user: string
+      content: string
+      date: string
+      time: string
+      memo: string
+    }[]
+    setRecentReportList: (payload: {
+      id: number
+      user: string
+      content: string
+      date: string
+      time: string
+      memo: string
+    }[]) => void
 }
 
 const useStore = create<State>((set) => ({
@@ -66,7 +82,10 @@ const useStore = create<State>((set) => ({
     set({content: payload}),
   contentsList: [],
   setContentsList: (payload) =>
-    set({ contentsList: payload })
+    set({ contentsList: payload }),
+  recentReportList: [],
+  setRecentReportList: (payload) =>
+    set({ recentReportList: payload })
 }))
 
 export default useStore

@@ -3,6 +3,8 @@
 import React, {useState} from 'react'
 import useStore from '../../store/index'
 import useCreateStudyContents from '../../fooks/useCreatrStudyContents';
+import RegisterButton from '../atoms/RegisterButton';
+import ContentsInputContent from '../atoms/ContentsInputContent';
 
 export default function ResultInput() {
   const content = useStore((state) => state.content)
@@ -17,7 +19,6 @@ export default function ResultInput() {
     }
     const { createStudyContents } = useCreateStudyContents(content)
     await createStudyContents()
-    setContentErrFlag(false)
     setContent("")
   }
 
@@ -26,17 +27,9 @@ export default function ResultInput() {
         <div className="p-8 flex flex-col justify-center justify-items-center">
             <div className="text-center p-3 stroke-inherit text-xl text-stone-600">学習コンテンツを登録する</div>
             <div className="p-2 flex flex-col justify-center justify-items-center border-2 border-stone-400 rounded">
-                <div className="p-2 flex flex-col">
-                    <label htmlFor="content">学習コンテンツ</label>
-                    <input id="content" className="rounded-md border-2 p-2 outline-none border-stone-400"
-                           value={content}
-                           onChange={(e) => setContent(e.target.value)}/>
-                    <div className="text-red-400 text-sm">{contentErrFlag ? "学習コンテンツを入力して下さい" : ""}</div>
-                </div>
+                <ContentsInputContent contentErrFlag={contentErrFlag}/>
                 <div className="p-2 my-2">
-                    <button className="rounded-md bg-stone-600 text-white w-full p-2 hover:bg-stone-800"
-                            value={content}
-                            onClick={clickHandler}>登録する</button>
+                    <RegisterButton clickHandler={clickHandler} text="登録する" />
                 </div>
             </div>
         </div>

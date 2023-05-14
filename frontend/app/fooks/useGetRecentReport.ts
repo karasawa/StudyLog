@@ -2,10 +2,9 @@ import Cookie from 'universal-cookie'
 
 const cookie = new Cookie()
 
-export default function useListStudyContents(setRecentReportList: any) {
-
-    const listStudyContents = async() => {
-        await fetch(new URL(`http://localhost:8080/contents`), {
+export default function useGetRecentReport(setContentsList: any) {
+    const getRecentReport = async() => {
+        await fetch(new URL(`http://localhost:8080/studies`), {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -16,9 +15,9 @@ export default function useListStudyContents(setRecentReportList: any) {
             .catch((err) => console.log(err))
             .then((data) => {
                 console.log(data)
-                setRecentReportList(data)
+                setContentsList(data)
             })
     }
 
-    return { listStudyContents }
+    return { getRecentReport }
 }

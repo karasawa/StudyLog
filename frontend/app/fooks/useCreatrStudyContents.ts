@@ -4,6 +4,7 @@ const cookie = new Cookie()
 
 export default function useCreateStudyContents(content: string) {
     const createStudyContents = async() => {
+        if(content === "")return
         await fetch(new URL(`http://localhost:8080/contents`), {
             method: "POST",
             body: JSON.stringify({ content: content}),
