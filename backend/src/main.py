@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
-from routers import user, auth, study, study_contents
+from routers import user, auth, study, study_contents, objective
 
 app = FastAPI()
 app.include_router(auth.router)
 app.include_router(user.router)
 app.include_router(study.router)
 app.include_router(study_contents.router)
+app.include_router(objective.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

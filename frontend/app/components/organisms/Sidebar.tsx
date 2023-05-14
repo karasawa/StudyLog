@@ -14,7 +14,7 @@ export default function Sidebar() {
   const props = [
     {path: "/", text: "記録", icon: <CreateIcon  className="mr-3"/>},
     {path: "/", text: "学習レポート", icon: <AppRegistrationIcon  className="mr-3"/>},
-    {path: "/", text: "目標設定", icon: <FlagIcon  className="mr-3"/>},
+    {path: "/objective", text: "目標設定", icon: <FlagIcon  className="mr-3"/>},
     {path: "/contents", text: "コンテンツ登録", icon: <CategoryIcon  className="mr-3"/>},
     {path: "/", text: "タイムライン", icon: <TimelineIcon  className="mr-3"/>},
     {path: "/", text: "プロフィール", icon: <Person2Icon  className="mr-3"/>},

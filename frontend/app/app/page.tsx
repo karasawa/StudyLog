@@ -3,7 +3,7 @@ import Modal from "../components/molecules/Modal";
 import Header from "@/components/organisms/Header";
 import Sidebar from "@/components/organisms/Sidebar";
 import ResultInput from "@/components/organisms/ResultInput";
-import RecentRecort from "@/components/molecules/RecentRecort";
+import RecentReport from "@/components/molecules/RecentReport";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
               <div className="mb-5 pt-5 pl-7 h-3/5 w-5/6">
                 <Calender />
               </div>
-              <RecentRecort />
+              <RecentReport />
             </div>
           </div>
         </div>

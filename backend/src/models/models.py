@@ -48,3 +48,22 @@ class StudyContents(database.Base):
     content = sa.Column("content",
                      sa.Text,
                      nullable=False)
+
+class Objective(database.Base):
+    __tablename__ = "objectives"
+    id = sa.Column("id",
+                   sa.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    user = sa.Column("user",
+                      sa.Text,
+                      nullable=False)
+    objective = sa.Column("objective",
+                     sa.Text,
+                     nullable=False)
+    deadline = sa.Column("deadline",
+                     sa.Text,
+                     nullable=False)
+    deleteFlag = sa.Column("deleteFlag",
+                           sa.Boolean,
+                           nullable=False)

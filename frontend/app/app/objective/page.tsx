@@ -2,7 +2,7 @@ import Calender from "../../components/organisms/Calender"
 import Modal from "../../components/molecules/Modal";
 import Header from "@/components/organisms/Header";
 import Sidebar from "@/components/organisms/Sidebar";
-import ContentsInput from "@/components/organisms/ContentsInput";
+import ObjectiveInput from "@/components/organisms/ObjectiveInput";
 import RecentReport from "@/components/molecules/RecentReport";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
           <div className="flex flex-1" style={{height: "92%"}}>
             <div className="flex" style={{width: "55%"}}>
               <div className="w-full border-r-4 border-stone-400">
-                <ContentsInput />
+                <ObjectiveInput />
               </div>
             </div>
             <div style={{width: "45%"}} className="flex flex-col">

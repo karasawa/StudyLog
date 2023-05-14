@@ -47,6 +47,15 @@ type State = {
       time: string
       memo: string
     }[]) => void
+    objective: {
+      objective: string
+      deadline: string
+    }
+    setObjective: (payload: {
+      objective: string
+      deadline: string
+    }) => void
+    resetObjective: () => void
 }
 
 const useStore = create<State>((set) => ({
@@ -85,7 +94,25 @@ const useStore = create<State>((set) => ({
     set({ contentsList: payload }),
   recentReportList: [],
   setRecentReportList: (payload) =>
-    set({ recentReportList: payload })
+    set({ recentReportList: payload }),
+  objective: {
+    objective: "",
+    deadline: ""
+  },
+  setObjective: (payload) =>
+    set({
+      objective: {
+        objective: payload.objective,
+        deadline: payload.deadline
+      }
+    }),
+  resetObjective: () =>
+    set({
+      objective: {
+        objective: "",
+        deadline: ""
+      }
+    })
 }))
 
 export default useStore
