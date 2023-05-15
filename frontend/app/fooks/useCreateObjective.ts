@@ -3,9 +3,10 @@ import Cookie from 'universal-cookie'
 const cookie = new Cookie()
 
 export default function useCreateObjective(objective: string,
-                                           deadline: string) {
+                                           deadline: string,
+                                           flag: boolean) {
     const createObjective = async() => {
-        if(objective === "" || deadline === "")return
+        if(objective === "" || deadline === "" || flag)return
         await fetch(new URL(`http://localhost:8080/objective`), {
             method: "POST",
             body: JSON.stringify({ objective: objective,

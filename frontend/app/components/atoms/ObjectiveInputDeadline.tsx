@@ -5,9 +5,10 @@ import useStore from '../../store/index'
 
 type Props = {
     deadlineErrFlag: boolean
+    deadlineFmtFlag: boolean
 }
 
-function ObjectiveInputDeadline({deadlineErrFlag}: Props) {
+function ObjectiveInputDeadline({deadlineErrFlag, deadlineFmtFlag}: Props) {
   const objective = useStore((state) => state.objective)
   const setObjective = useStore((state) => state.setObjective)
   
@@ -18,6 +19,7 @@ function ObjectiveInputDeadline({deadlineErrFlag}: Props) {
             value={objective.deadline}
             onChange={(e) => setObjective({...objective, deadline: e.target.value})}/>
         <div className="text-red-400 text-sm">{deadlineErrFlag ? "達成期限を入力して下さい" : ""}</div>
+        <div className="text-red-400 text-sm">{deadlineFmtFlag && !deadlineErrFlag ? "YYYY-MM-DD形式で入力して下さい" : ""}</div>
     </div>
   )
 }

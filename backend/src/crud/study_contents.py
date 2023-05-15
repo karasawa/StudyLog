@@ -8,7 +8,6 @@ def get_study_contents(
     db: Session, current_user: model.User
 ) -> List[Tuple[int, str, str]]:
     result: Result = db.query(model.StudyContents).filter(model.StudyContents.user == current_user.email)
-    print(result)
     return result.all()
 
 def create_study_contents(
