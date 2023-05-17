@@ -2,9 +2,9 @@ import Cookie from 'universal-cookie'
 
 const cookie = new Cookie()
 
-export default function useGetRecentReport(setRecentReportList: any) {
-    const getRecentReport = async() => {
-        await fetch(new URL(`http://localhost:8080/studies`), {
+export default function useGetProfile(setProfile: any) {
+    const getProfile = async() => {
+        await fetch(new URL(`http://localhost:8080/profile`), {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -15,9 +15,8 @@ export default function useGetRecentReport(setRecentReportList: any) {
             .catch((err) => console.log(err))
             .then((data) => {
                 console.log(data)
-                setRecentReportList(data)
+                setProfile(data)
             })
     }
-
-    return { getRecentReport }
+  return { getProfile }
 }

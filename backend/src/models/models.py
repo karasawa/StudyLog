@@ -67,3 +67,16 @@ class Objective(database.Base):
     deleteFlag = sa.Column("deleteFlag",
                            sa.Boolean,
                            nullable=False)
+
+class Profile(database.Base):
+    __tablename__ = "profiles"
+    id = sa.Column("id",
+                   sa.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    email = sa.Column("email",
+                      sa.Text,
+                      nullable=False)
+    username = sa.Column("username",
+                     sa.Text,
+                     nullable=True)

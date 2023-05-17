@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import useAuth from '../../fooks/useAuth'
 import Cookie from 'universal-cookie'
 import { useRouter } from 'next/navigation';
+import useGetObjective from '@/fooks/useGetObjective';
+import useGetProfile from '@/fooks/useGetProfile';
+import useStore from '../../store/index'
 
 const cookie = new Cookie()
 
@@ -12,6 +15,8 @@ export default function AuthForm() {
   const [password, setPassword] = useState<string>('')
   const [isLogin, setIsLogin] = useState<boolean>(true)
   const [errFlag, setErrFlag] = useState<boolean>(false)
+  const setObjective = useStore((state) => state.setObjective)
+  const setProfile = useStore((state) => state.setProfile)
 
   const router = useRouter()
 
@@ -20,11 +25,14 @@ export default function AuthForm() {
     setErrFlag(false)
     if(isLogin){
       await login()
-      console.log(cookie.get("access_token"))
       if(cookie.get("access_token") === "undefined"){
         setErrFlag(true)
         return
       }
+      const { getObjective } = useGetObjective(setObjective)
+      const { getProfile } = useGetProfile(setProfile)
+      await getObjective()
+      await getProfile()
       router.push("/")
     } else {
       await signup()

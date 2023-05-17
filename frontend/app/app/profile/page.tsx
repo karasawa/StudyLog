@@ -1,8 +1,8 @@
-import Calender from "../components/organisms/Calender"
-import Modal from "../components/organisms/Modal";
+import Calender from "../../components/organisms/Calender"
+import Modal from "../../components/organisms/Modal";
 import Header from "@/components/organisms/Header";
 import Sidebar from "@/components/organisms/Sidebar";
-import ResultInput from "@/components/organisms/ResultInput";
+import ProfileInput from "@/components/organisms/ProfileInput";
 import RecentReport from "@/components/molecules/RecentReport";
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
           <div className="flex flex-1" style={{height: "92%"}}>
             <div className="flex" style={{width: "55%"}}>
               <div className="w-full border-r-4 border-stone-400">
-                <ResultInput />
+                <ProfileInput />
               </div>
             </div>
             <div style={{width: "45%"}} className="flex flex-col">

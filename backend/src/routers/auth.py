@@ -3,6 +3,7 @@ import models.models as model
 import schemas.user as user_schema
 import schemas.jwt as jwt_schema
 from crud import user as user_crud
+from crud import profile as profile_crud
 from sqlalchemy.orm import Session
 from models.database import get_db
 from typing import Optional
@@ -22,6 +23,11 @@ def signup(request: user_schema.UserCreate, db: Session = Depends(get_db)):
         'email': request.email,
         'password': jwt_service.get_hashed_password(request.password)
     }
+    profile = {
+        'email': request.email,
+        'username': ''
+    }
+    profile_crud.create_profile(db, profile)
     return user_crud.create_user(db, user)
 
 @router.post('/login', summary="Create access and refresh tokens for user", response_model=jwt_schema.TokenBase)

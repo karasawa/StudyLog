@@ -1,11 +1,16 @@
 import create from 'zustand'
 import { format } from 'date-fns'
-import internal from 'stream'
 const today = format(new Date(), 'yyyy-MM-dd')
 
 type State = {
-    modalIsOpen: boolean
-    setModalIsOpen: (payload: boolean) => void
+    modalStatus: {
+      isOpen: boolean
+      date: string
+    }
+    setModalStatus: (payload: {
+      isOpen: boolean
+      date: string
+    }) => void
     result: {
       content: string
       date: string
@@ -56,12 +61,26 @@ type State = {
       deadline: string
     }) => void
     resetObjective: () => void
+    profile: {
+      username: string
+    }
+    setProfile: (payload: {
+      username: string
+    }) => void
 }
 
 const useStore = create<State>((set) => ({
-  modalIsOpen: false,
-  setModalIsOpen: (payload) =>
-    set({ modalIsOpen: payload }),
+  modalStatus: {
+    isOpen: false,
+    date: ""
+  },
+  setModalStatus: (payload) =>
+    set({ 
+      modalStatus: {
+        isOpen: payload.isOpen,
+        date: payload.date
+      }
+    }),
   result: {
     content: "",
     date: today,
@@ -111,6 +130,15 @@ const useStore = create<State>((set) => ({
       objective: {
         objective: "",
         deadline: ""
+      }
+    }),
+  profile: {
+    username: ""
+  },
+  setProfile: (payload) =>
+    set({
+      profile: {
+        username: payload.username
       }
     })
 }))

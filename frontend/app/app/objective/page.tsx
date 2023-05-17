@@ -1,5 +1,5 @@
 import Calender from "../../components/organisms/Calender"
-import Modal from "../../components/molecules/Modal";
+import Modal from "../../components/organisms/Modal";
 import Header from "@/components/organisms/Header";
 import Sidebar from "@/components/organisms/Sidebar";
 import ObjectiveInput from "@/components/organisms/ObjectiveInput";

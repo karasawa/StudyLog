@@ -14,7 +14,7 @@ function ContentsInputContent({contentErrFlag}: Props) {
   return (
     <div className="p-2 flex flex-col">
         <label htmlFor="content">学習コンテンツ</label>
-        <input id="content" className="rounded-md border-2 p-2 outline-none border-stone-400"
+        <input id="content" className="rounded-md border-2 p-1 outline-none border-stone-400"
             value={content}
             onChange={(e) => setContent(e.target.value)}/>
         <div className="text-red-400 text-sm">{contentErrFlag ? "学習コンテンツを入力して下さい" : ""}</div>

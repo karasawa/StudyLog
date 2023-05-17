@@ -15,7 +15,7 @@ function ObjectiveInputDeadline({deadlineErrFlag, deadlineFmtFlag}: Props) {
   return (
     <div className="p-2 flex flex-col">
         <label htmlFor="deadline">達成期限</label>
-        <input id="deadline" className="rounded-md border-2 p-2 outline-none border-stone-400"
+        <input id="deadline" placeholder="YYYY-MM-DD" className="rounded-md border-2 p-1 outline-none border-stone-400"
             value={objective.deadline}
             onChange={(e) => setObjective({...objective, deadline: e.target.value})}/>
         <div className="text-red-400 text-sm">{deadlineErrFlag ? "達成期限を入力して下さい" : ""}</div>

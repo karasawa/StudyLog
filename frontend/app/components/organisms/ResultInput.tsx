@@ -10,11 +10,13 @@ import ResultInputTime from '../atoms/ResultInputTime';
 import RegisterButton from '../atoms/RegisterButton';
 import ResultInputDate from '../atoms/ResultInputDate';
 import ResultInputContent from '../atoms/ResultInputContent';
+import useGetRecentReport from '@/fooks/useGetRecentReport';
 
 export default function ResultInput() {
   const result = useStore((state) => state.result)
   const resetResult = useStore((state) => state.resetResult)
   const setContentsList = useStore((state) => state.setContentsList)
+  const setRecentReportList = useStore((state) => state.setRecentReportList)
   const [contentErrFlag, setContentErrFlag] = useState<boolean>(false)
   const [timeErrFlag, setTimeErrFlag] = useState<boolean>(false)
 
@@ -39,6 +41,8 @@ export default function ResultInput() {
                                            result.time,
                                            result.memo)
     await createStudy()
+    const { getRecentReport } = useGetRecentReport(setRecentReportList)
+    await getRecentReport()
     resetResult()
   }
 

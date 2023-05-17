@@ -14,7 +14,7 @@ function ObjectiveInputObjective({objectiveErrFlag}: Props) {
   return (
     <div className="p-2 flex flex-col">
         <label htmlFor="objective">学習目標</label>
-        <input id="objective" className="rounded-md border-2 p-2 outline-none border-stone-400"
+        <input id="objective" className="rounded-md border-2 p-1 outline-none border-stone-400"
             value={objective.objective}
             onChange={(e) => setObjective({...objective, objective: e.target.value})}/>
         <div className="text-red-400 text-sm">{objectiveErrFlag ? "学習目標を入力して下さい" : ""}</div>

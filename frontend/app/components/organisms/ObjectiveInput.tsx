@@ -42,10 +42,6 @@ export default function ObjectiveInput() {
     await createObjective()
   }
 
-  const { dateValidation } = useDateValidation("2023-09-09")
-  const errFlag = dateValidation()
-  console.log(errFlag)
-
   return (
     <div>
         <div className="p-8 flex flex-col justify-center justify-items-center">
