@@ -80,3 +80,19 @@ class Profile(database.Base):
     username = sa.Column("username",
                      sa.Text,
                      nullable=True)
+
+class TimeLine(database.Base):
+    __tablename__ = "timelines"
+    id = sa.Column("id",
+                   sa.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    user = sa.Column("user",
+                      sa.Text,
+                      nullable=False)
+    message = sa.Column("message",
+                      sa.Text,
+                      nullable=True)
+    createdAt = sa.Column("createdAt",
+                     sa.DateTime,
+                     nullable=False)

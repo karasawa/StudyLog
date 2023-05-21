@@ -21,35 +21,9 @@ export default function ResultInput() {
   const [contentErrFlag, setContentErrFlag] = useState<boolean>(false)
   const [messageErrFlag, setMessageErrFlag] = useState<boolean>(false)
 
-  const clickHandler = async() => {
-    // setContentErrFlag(false)
-    // setTimeErrFlag(false)
-    // if(result.content === ""){setContentErrFlag(true)}
-    // if(result.time === ""){setTimeErrFlag(true)}
-    // if(contentErrFlag || timeErrFlag){
-    //     return
-    // }
-    // const { createStudy } = useCreateStudy(result.content,
-    //                                        result.date,
-    //                                        result.time,
-    //                                        result.memo)
-    // await createStudy()
-    // const { getRecentReport } = useGetRecentReport(setRecentReportList)
-    // await getRecentReport()
-    // resetResult()
-  }
-
   return (
-    <div className="h-2/5"> 
-        <div className="px-8 pt-8 flex flex-col justify-center justify-items-center">
-            <div className="text-center p-3 stroke-inherit text-xl text-stone-600">タイムラインを投稿する</div>
-            <div className="p-2 flex flex-col justify-center justify-items-center border-2 border-stone-400 rounded">
-                <ChatInput messageErrFlag={messageErrFlag}/>
-                <div className="p-2 my-2">
-                    <RegisterButton clickHandler={clickHandler} text="投稿する" />
-                </div>
-            </div>
-        </div>
+    <div className="border-b-4 border-stone-400" style={{height: "11%"}}>
+      <ChatInput />
     </div>
   )
 }

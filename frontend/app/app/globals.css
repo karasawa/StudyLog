@@ -23,3 +23,6 @@ html::-webkit-scrollbar {
 .recent-records-box::-webkit-scrollbar {
     display: none;
 }
+.timeline::-webkit-scrollbar {
+    display: none;
+}

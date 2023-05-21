@@ -12,6 +12,8 @@ import ResultInputDate from '../atoms/ResultInputDate';
 import ResultInputContent from '../atoms/ResultInputContent';
 import useGetRecentReport from '@/fooks/useGetRecentReport';
 import ChatInput from '../atoms/ChatInput';
+import TimelineIcons from '../atoms/TimelineIcons';
+import TimelineItems from '../atoms/TimelineItems';
 
 export default function ResultInput() {
   const result = useStore((state) => state.result)
@@ -40,11 +42,8 @@ export default function ResultInput() {
   }
 
   return (
-    <div className="h-full">
-        <div className="px-8 flex flex-col justify-center justify-items-center">
-            <div className="h-full p-2 flex flex-col justify-center justify-items-center border-2 border-t-0 border-stone-400 rounded">
-            </div>
-        </div>
+    <div className="flex flex-col overflow-scroll timeline" style={{height: "89%"}}>
+        <TimelineItems />
     </div>
   )
 }

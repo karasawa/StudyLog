@@ -1,18 +1,35 @@
 "use client";
 
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
+import RegisterButton from './RegisterButton';
+import useStore from '../../store/index'
+import useCreateTimeline from '@/fooks/useCreateTimeline';
 
-type Props = {
-    messageErrFlag: boolean
-}
+function ChatInput() {
+  const timeline = useStore((state) => state.timeline)
+  const setTimeline = useStore((state) => state.setTimeline)
+  const [messageErrFlag, setMessageErrFlag] = useState<boolean>(false)
 
-function ChatInput({messageErrFlag}: Props) {
+  const clickHandler = async() => {
+    setMessageErrFlag(false)
+    if(timeline.message === ""){setMessageErrFlag(true)}
+    if(messageErrFlag){
+        return
+    }
+    const { createTimeline } = useCreateTimeline(timeline.message)
+    await createTimeline()
+    setTimeline({...timeline, message: ""})
+    }
 
   return (
-    <div className="p-2 flex flex-col">
-        <label htmlFor="message">メッセージ</label>
-        <input id="message" className="rounded-md border-2 p-1 outline-none border-stone-400"/>
-        <div className="text-red-400 text-sm">{messageErrFlag ? "メッセージを入力して下さい" : ""}</div>
+    <div className="flex justify-center items-center h-full">
+        {timeline.message}
+        <input className="w-1/2 rounded-md border-2 p-1 outline-none border-stone-400"
+               onChange={(e) => setTimeline({...timeline, message: e.target.value})} 
+               value={timeline.message}/>
+        <div className="ml-2" style={{width: "10%"}}>
+            <RegisterButton clickHandler={clickHandler} text="投稿"/>
+        </div>
     </div>
   )
 }

@@ -67,6 +67,12 @@ type State = {
     setProfile: (payload: {
       username: string
     }) => void
+    timeline: {
+      message: string
+    }
+    setTimeline: (payload: {
+      message: string
+    }) => void
 }
 
 const useStore = create<State>((set) => ({
@@ -139,6 +145,15 @@ const useStore = create<State>((set) => ({
     set({
       profile: {
         username: payload.username
+      }
+    }),
+  timeline: {
+    message: ""
+  },
+  setTimeline: (payload) =>
+    set({
+      timeline: {
+        message: payload.message
       }
     })
 }))
