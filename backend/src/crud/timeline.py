@@ -4,11 +4,12 @@ from sqlalchemy.engine import Result
 import models.models as model
 import schemas.timeline as timeline_schema
 import datetime
+from sqlalchemy import desc
 
 def get_timelines(
     db: Session
 ) -> List[Tuple[int, str, str, datetime.datetime]]:
-    result: Result = db.query(model.TimeLine)
+    result: Result = db.query(model.TimeLine).order_by(desc(model.TimeLine.createdAt))
     return result.all()
 
 def create_timeline(

@@ -4,10 +4,12 @@ import React, { memo, useState } from 'react'
 import RegisterButton from './RegisterButton';
 import useStore from '../../store/index'
 import useCreateTimeline from '@/fooks/useCreateTimeline';
+import useListTimeline from '@/fooks/useListTimeline';
 
 function ChatInput() {
   const timeline = useStore((state) => state.timeline)
   const setTimeline = useStore((state) => state.setTimeline)
+  const setTimelineList = useStore((state) => state.setTimelineList)
   const [messageErrFlag, setMessageErrFlag] = useState<boolean>(false)
 
   const clickHandler = async() => {
@@ -19,11 +21,12 @@ function ChatInput() {
     const { createTimeline } = useCreateTimeline(timeline.message)
     await createTimeline()
     setTimeline({...timeline, message: ""})
+    const { listTimeline } = useListTimeline(setTimelineList)
+    await listTimeline()
     }
 
   return (
     <div className="flex justify-center items-center h-full">
-        {timeline.message}
         <input className="w-1/2 rounded-md border-2 p-1 outline-none border-stone-400"
                onChange={(e) => setTimeline({...timeline, message: e.target.value})} 
                value={timeline.message}/>

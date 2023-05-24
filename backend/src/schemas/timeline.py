@@ -7,6 +7,7 @@ class TimelineBase(BaseModel):
 class Timeline(TimelineBase):
     user: str
     createdAt: datetime.datetime
+    id: int
 
     class Config:
         orm_mode = True

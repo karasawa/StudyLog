@@ -73,6 +73,18 @@ type State = {
     setTimeline: (payload: {
       message: string
     }) => void
+    timelineList: {
+      id: number
+      user: string
+      message: string
+      createdAt: Date
+    }[]
+    setTimelineList: (payload: {
+      id: number
+      user: string
+      message: string
+      createdAt: Date
+    }[]) => void
 }
 
 const useStore = create<State>((set) => ({
@@ -155,7 +167,10 @@ const useStore = create<State>((set) => ({
       timeline: {
         message: payload.message
       }
-    })
+    }),
+  timelineList: [],
+  setTimelineList: (payload) =>
+    set({timelineList: payload})
 }))
 
 export default useStore
