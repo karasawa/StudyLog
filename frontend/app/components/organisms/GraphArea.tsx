@@ -23,7 +23,8 @@ export default function GraphArea() {
   const setRecentReportList = useStore((state) => state.setRecentReportList)
   const [contentErrFlag, setContentErrFlag] = useState<boolean>(false)
   const [timeErrFlag, setTimeErrFlag] = useState<boolean>(false)
-  const [imageData, setImageData] = useState('');
+  const [timeReport, setTimeReport] = useState('');
+  const [contentsReport, setContentsReport] = useState('');
   const [src, setSrc] = useState('')
 
   useEffect(() => {
@@ -37,11 +38,15 @@ export default function GraphArea() {
         })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.png)
-          const buf = Buffer.from(data.time_report, "base64")
-          const blob = new Blob([buf], { type: "image/png" })
-          const uri = window.URL.createObjectURL(blob)
-          setImageData(uri)
+          const buf_a = Buffer.from(data.time_report, "base64")
+          const blob_a = new Blob([buf_a], { type: "image/png" })
+          const uri_a = window.URL.createObjectURL(blob_a)
+          setTimeReport(uri_a)
+
+          const buf_b = Buffer.from(data.contents_report, "base64")
+          const blob_b = new Blob([buf_b], { type: "image/png" })
+          const uri_b = window.URL.createObjectURL(blob_b)
+          setContentsReport(uri_b)
         })
     }
     get_report()
@@ -50,13 +55,13 @@ export default function GraphArea() {
   return (
     <div style={{height: "100%"}} className="overflow-scroll graph_area">
         <div className="p-6">
-            {imageData !== '' && (
-                <img src={imageData}/>
+            {timeReport !== '' && (
+                <img src={timeReport}/>
             )}        
         </div>
         <div className="p-6">
-            {imageData !== '' && (
-                <img src={imageData}/>
+            {contentsReport !== '' && (
+                <img src={contentsReport}/>
             )}        
         </div>
     </div>

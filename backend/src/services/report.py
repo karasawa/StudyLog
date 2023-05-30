@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from fastapi import APIRouter, Depends, HTTPException, Response
 import schemas.study as study_schema
+import schemas.study_contents as study_contents_schema
 import schemas.report as report_schema
 from crud import objective as objective_crud
 from sqlalchemy.orm import Session
@@ -9,11 +10,48 @@ from services import jwt as jwt_service
 from models.database import get_db
 from typing import List, Optional
 import io, base64
-import matplotlib.style as style
 import japanize_matplotlib
 import datetime
 
-def plot_report(study_list=List[study_schema.Study]) -> report_schema.ReportBase:
+def plot_report(
+        study_list=List[study_schema.Study],
+        study_contents_list=List[study_contents_schema.StudyContens]
+    ) -> report_schema.ReportBase:
+    
+    time_report = create_bar(study_list)
+    contents_report = create_pie(study_contents_list, study_list)
+    response = report_schema.ReportBase(time_report=time_report,
+                                        contents_report=contents_report)
+    return response
+
+def create_pie(
+        study_contents_list=List[study_contents_schema.StudyContens],
+        study_list=List[study_schema.Study]
+    ) -> str:
+    labels = []
+    time_list = []
+
+    for study_content in study_contents_list:
+        labels.append(study_content.content)
+
+    for label in labels:
+        time_total = 0
+        for study in study_list:
+            if label == study.content:
+                time_total += float(study.time)
+        time_list.append(time_total)
+
+    wedgeprops={"edgecolor":"white", "linewidth":2}
+    fig, ax = plt.subplots()
+    ax.pie(time_list, labels=labels, startangle=90, counterclock=False, radius=1.3, wedgeprops=wedgeprops, autopct="%.2f%%")
+    fig.suptitle("コンテンツ別学習量")
+    # ax.legend(loc='upper right')
+    with io.BytesIO() as buf:
+        fig.savefig(buf, format="png")
+        contents_report = base64.encodebytes(buf.getvalue()).decode("utf-8")
+    return contents_report
+
+def create_bar(study_list=List[study_schema.Study]) -> str:
     dummy_days_list = x_axis_setting()
     
     study_times = study_service.plot_report(study_list)
@@ -37,8 +75,7 @@ def plot_report(study_list=List[study_schema.Study]) -> report_schema.ReportBase
     with io.BytesIO() as buf:
         fig.savefig(buf, format="png")
         time_report = base64.encodebytes(buf.getvalue()).decode("utf-8")
-        response = report_schema.ReportBase(time_report=time_report)
-    return response
+    return time_report
 
 def conv_day_format(dummy_days_list=List[str]) -> List[str]:
     days_list = []
