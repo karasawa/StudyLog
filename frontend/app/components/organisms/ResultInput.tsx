@@ -19,6 +19,8 @@ export default function ResultInput() {
   const setRecentReportList = useStore((state) => state.setRecentReportList)
   const [contentErrFlag, setContentErrFlag] = useState<boolean>(false)
   const [timeErrFlag, setTimeErrFlag] = useState<boolean>(false)
+  const snackBarStatus = useStore((state) => state.snackBarStatus)
+  const setSnackBarStatus = useStore((state) => state.setSnackBarStatus)
 
   useEffect(() => {
     const list_study_contents = async() => {
@@ -44,6 +46,7 @@ export default function ResultInput() {
     const { getRecentReport } = useGetRecentReport(setRecentReportList)
     await getRecentReport()
     resetResult()
+    setSnackBarStatus({...snackBarStatus, open: true})
   }
 
   return (

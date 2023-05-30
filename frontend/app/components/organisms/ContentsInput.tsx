@@ -10,6 +10,8 @@ export default function ResultInput() {
   const content = useStore((state) => state.content)
   const setContent = useStore((state) => state.setContent)
   const [contentErrFlag, setContentErrFlag] = useState<boolean>(false)
+  const snackBarStatus = useStore((state) => state.snackBarStatus)
+  const setSnackBarStatus = useStore((state) => state.setSnackBarStatus)
 
   const clickHandler = async() => {
     setContentErrFlag(false)
@@ -20,6 +22,7 @@ export default function ResultInput() {
     const { createStudyContents } = useCreateStudyContents(content)
     await createStudyContents()
     setContent("")
+    setSnackBarStatus({...snackBarStatus, open: true})
   }
 
   return (

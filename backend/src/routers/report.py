@@ -1,6 +1,4 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends
 import schemas.user as user_schema
 import schemas.report as report_schema
 from crud import study as study_crud
@@ -8,8 +6,6 @@ from crud import study_contents as study_contents_crud
 from services import jwt as jwt_service
 from sqlalchemy.orm import Session
 from models.database import get_db
-from typing import List, Optional
-import models.models as model
 from services import report as report_service
 
 router = APIRouter()

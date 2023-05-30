@@ -1,14 +1,9 @@
 import matplotlib.pyplot as plt
-from fastapi import APIRouter, Depends, HTTPException, Response
 import schemas.study as study_schema
 import schemas.study_contents as study_contents_schema
 import schemas.report as report_schema
-from crud import objective as objective_crud
-from sqlalchemy.orm import Session
 from services import study as study_service
-from services import jwt as jwt_service
-from models.database import get_db
-from typing import List, Optional
+from typing import List
 import io, base64
 import japanize_matplotlib
 import datetime
@@ -41,9 +36,13 @@ def create_pie(
                 time_total += float(study.time)
         time_list.append(time_total)
 
-    wedgeprops={"edgecolor":"white", "linewidth":2}
+    wedgeprops = {"edgecolor":"white", "linewidth":2}
+    colors = []
+    base_color = "#a8a"
+    for i in range(len(labels)):
+        colors.append(base_color + str(i) + "9e")
     fig, ax = plt.subplots()
-    ax.pie(time_list, labels=labels, startangle=90, counterclock=False, radius=1.3, wedgeprops=wedgeprops, autopct="%.2f%%")
+    ax.pie(time_list, labels=labels, startangle=90, counterclock=False, radius=1.3, wedgeprops=wedgeprops, autopct="%.2f%%", colors=colors)
     fig.suptitle("コンテンツ別学習量")
     # ax.legend(loc='upper right')
     with io.BytesIO() as buf:
@@ -65,7 +64,7 @@ def create_bar(study_list=List[study_schema.Study]) -> str:
 
     fig, ax = plt.subplots()
 
-    ax.bar(x, y, color="#a8a29e")
+    ax.bar(x, y, color="#a8a79e")
     fig.suptitle("一か月間の学習時間推移")
     # ax.set_xlabel("日付")
     ax.set_ylabel("学習時間")

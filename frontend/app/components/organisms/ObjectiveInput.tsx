@@ -15,6 +15,8 @@ export default function ObjectiveInput() {
   const [objectiveErrFlag, setObjectiveErrFlag] = useState<boolean>(false)
   const [deadlineErrFlag, setDeadlineErrFlag] = useState<boolean>(false)
   const [deadlineFmtFlag, setDeadlineFmtFlag] = useState<boolean>(false)
+  const snackBarStatus = useStore((state) => state.snackBarStatus)
+  const setSnackBarStatus = useStore((state) => state.setSnackBarStatus)
 
   useEffect(() => {
     const get_objective = async() => {
@@ -40,6 +42,7 @@ export default function ObjectiveInput() {
                                                    objective.deadline,
                                                    flag)
     await createObjective()
+    setSnackBarStatus({...snackBarStatus, open: true})
   }
 
   return (

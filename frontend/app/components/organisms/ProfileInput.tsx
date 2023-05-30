@@ -11,6 +11,8 @@ export default function ProfileInput() {
   const profile = useStore((state) => state.profile)
   const setProfile = useStore((state) => state.setProfile)
   const [usernameErrFlag, setUsernameErrFlag] = useState<boolean>(false)
+  const snackBarStatus = useStore((state) => state.snackBarStatus)
+  const setSnackBarStatus = useStore((state) => state.setSnackBarStatus)
 
   useEffect(() => {
     const get_profile = async() => {
@@ -28,6 +30,7 @@ export default function ProfileInput() {
     }
     const { updateProfile } = useUpdateProfile(profile.username)
     await updateProfile()
+    setSnackBarStatus({...snackBarStatus, open: true})
   }
 
   return (

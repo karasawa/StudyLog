@@ -1,18 +1,5 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from fastapi import APIRouter, Depends, HTTPException, Response
 import schemas.study as study_schema
-import schemas.report as report_schema
-from crud import objective as objective_crud
-from services import jwt as jwt_service
-from sqlalchemy.orm import Session
-from models.database import get_db
-from typing import List, Optional
-import models.models as model
-import io, base64, json
-import matplotlib.style as style
-import japanize_matplotlib
-import datetime
+from typing import List
 
 def plot_report(study_list=List[study_schema.Study]):
     response_list = []

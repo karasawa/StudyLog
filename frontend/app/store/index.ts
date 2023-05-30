@@ -1,5 +1,6 @@
 import create from 'zustand'
 import { format } from 'date-fns'
+
 const today = format(new Date(), 'yyyy-MM-dd')
 
 type State = {
@@ -85,6 +86,16 @@ type State = {
       message: string
       createdAt: Date
     }[]) => void
+    snackBarStatus: {
+      open: boolean
+      vertical: 'top'
+      horizontal: 'left'
+    }
+    setSnackBarStatus: (payload: {
+      open: boolean
+      vertical: 'top'
+      horizontal: 'left'
+    }) => void
 }
 
 const useStore = create<State>((set) => ({
@@ -170,7 +181,14 @@ const useStore = create<State>((set) => ({
     }),
   timelineList: [],
   setTimelineList: (payload) =>
-    set({timelineList: payload})
+    set({timelineList: payload}),
+  snackBarStatus: {
+    open: false,
+    vertical: 'top',
+    horizontal: 'left'
+  },
+  setSnackBarStatus: (payload) =>
+    set({snackBarStatus: payload})
 }))
 
 export default useStore

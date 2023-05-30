@@ -29,3 +29,6 @@ html::-webkit-scrollbar {
 .graph_area::-webkit-scrollbar {
     display: none;
 }
+.MuiPaper-root::-webkit-scrollbar {
+    display: none;
+}

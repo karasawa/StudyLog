@@ -9,6 +9,7 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import SidebarItem from '../molecules/SidebarItem';
 import CreateIcon from '@mui/icons-material/Create';
+import SnackBar from '../molecules/SnackBar';
 
 export default function Sidebar() {
   const props = [
@@ -24,6 +25,7 @@ export default function Sidebar() {
   return (
     <>
         {props.map((prop, index) => (<SidebarItem key={index} prop={prop} />))}
+        <SnackBar />
     </>
   )
 }

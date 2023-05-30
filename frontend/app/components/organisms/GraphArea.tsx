@@ -1,31 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from 'react'
-import useStore from '../../store/index'
-import useCreateStudy from '../../fooks/useCreateStudy';
-import useListStudyContents from '../../fooks/useListStudyContents';
-import SNSbox from '../molecules/SNSbox';
-import ResultInputMemo from '../atoms/ResultInputMemo';
-import ResultInputTime from '../atoms/ResultInputTime';
-import RegisterButton from '../atoms/RegisterButton';
-import ResultInputDate from '../atoms/ResultInputDate';
-import ResultInputContent from '../atoms/ResultInputContent';
-import useGetRecentReport from '@/fooks/useGetRecentReport';
 import Cookie from 'universal-cookie'
 import { Buffer } from 'buffer'
 
 const cookie = new Cookie()
 
 export default function GraphArea() {
-  const result = useStore((state) => state.result)
-  const resetResult = useStore((state) => state.resetResult)
-  const setContentsList = useStore((state) => state.setContentsList)
-  const setRecentReportList = useStore((state) => state.setRecentReportList)
-  const [contentErrFlag, setContentErrFlag] = useState<boolean>(false)
-  const [timeErrFlag, setTimeErrFlag] = useState<boolean>(false)
   const [timeReport, setTimeReport] = useState('');
   const [contentsReport, setContentsReport] = useState('');
-  const [src, setSrc] = useState('')
 
   useEffect(() => {
     const get_report = async() => {

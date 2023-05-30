@@ -1,12 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 import schemas.study_contents as study_contents_schema
 import schemas.user as user_schema
 from crud import study_contents as study_contents_crud
 from services import jwt as jwt_service
 from sqlalchemy.orm import Session
 from models.database import get_db
-from typing import List, Optional
-import models.models as model
+from typing import List
 
 router = APIRouter()
 

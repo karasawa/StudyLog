@@ -1,9 +1,8 @@
-from typing import List, Tuple, Optional
+from typing import Tuple, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy.engine import Result
 from sqlalchemy import select
 import models.models as model
-import schemas.user as user_schema
 import schemas.profile as profile_schema
 
 def get_profile(

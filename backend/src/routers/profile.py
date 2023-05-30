@@ -5,8 +5,6 @@ from crud import profile as profile_crud
 from services import jwt as jwt_service
 from sqlalchemy.orm import Session
 from models.database import get_db
-from typing import List, Optional
-import models.models as model
 
 router = APIRouter()
 
