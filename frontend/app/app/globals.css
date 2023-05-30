@@ -26,3 +26,6 @@ html::-webkit-scrollbar {
 .timeline::-webkit-scrollbar {
     display: none;
 }
+.graph_area::-webkit-scrollbar {
+    display: none;
+}

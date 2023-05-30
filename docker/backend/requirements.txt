@@ -9,3 +9,5 @@ passlib
 python-multipart
 python-dotenv
 sqlalchemy
+matplotlib
+japanize_matplotlib

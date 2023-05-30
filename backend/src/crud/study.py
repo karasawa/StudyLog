@@ -14,7 +14,7 @@ def get_study(
 def get_studies(
     db: Session, current_user: model.User
 ) -> List[Tuple[int, str, str, str, str]]:
-    result: Result = db.query(model.Study).filter(model.Study.user == current_user.email)
+    result: Result = db.query(model.Study).filter(model.Study.user == current_user.email).order_by(model.Study.date)
     return result.all()
 
 def create_study(

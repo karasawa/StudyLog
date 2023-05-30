@@ -10,7 +10,7 @@ import models.models as model
 
 router = APIRouter()
 
-@router.get("/profile", summary="Get Profile", response_model=profile_schema.Profile)
+@router.get("/profile", summary="Get profile", response_model=profile_schema.Profile)
 def get_profile(current_user: user_schema.UserBase = Depends(jwt_service.get_current_user), db: Session = Depends(get_db)):
     return profile_crud.get_profile(db, current_user)
 
