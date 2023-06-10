@@ -12,7 +12,7 @@ type Props = {
 
 function RecentReportItem({ report }: Props) {
   return (
-    <div className="flex justify-evenly items-center w-full">
+    <div className="flex justify-start items-center w-3/4">
         <li>{report.content} … {report.time}h</li>
     </div>
   )

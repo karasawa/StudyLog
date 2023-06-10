@@ -1,7 +1,7 @@
 import schemas.study as study_schema
 from typing import List
 
-def plot_report(study_list=List[study_schema.Study]):
+def sum_study_times(study_list=List[study_schema.Study]):
     response_list = []
     counter = 0
     for study in study_list:

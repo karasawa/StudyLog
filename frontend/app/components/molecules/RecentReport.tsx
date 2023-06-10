@@ -29,13 +29,17 @@ export default function RecentReport() {
         <div className="text-center p-3 stroke-inherit text-xl text-stone-600 h-1/5">最近の記録</div>
         <div className="w-3/5 recent-records-box flex flex-col justify-start items-start overflow-scroll" style={{height: "65%"}}>
           <div className="border-stone-400 border-2 px-2 py-0 rounded-md">昨日（{yesterdayDisplay}）</div>
-          {recentReportList.map((report) => (yesterday === report.date &&
-            <RecentReportItem key={report.id} report={report} />
-          ))}
+            <div className="flex flex-col items-center justify-center w-full">
+              {recentReportList.map((report) => (yesterday === report.date &&
+                <RecentReportItem key={report.id} report={report} />
+              ))}
+            </div>
           <div className="border-stone-400 border-2 px-2 py-0 mt-2 rounded-md">一昨日（{dayBeforYesterdayDisplay}）</div>
-          {recentReportList.map((report) => (dayBeforYesterday === report.date &&
-            <RecentReportItem key={report.id} report={report} />
-          ))}
+            <div className="flex flex-col items-center justify-center w-full">
+              {recentReportList.map((report) => (dayBeforYesterday === report.date &&
+                <RecentReportItem key={report.id} report={report} />
+              ))}
+            </div>
         </div>
     </div>
 )

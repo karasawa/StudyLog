@@ -7,6 +7,14 @@ import { useRouter } from 'next/navigation';
 import useGetObjective from '@/fooks/useGetObjective';
 import useGetProfile from '@/fooks/useGetProfile';
 import useStore from '../../store/index'
+import useAuthValidation from '@/fooks/useAuthValidation';
+
+export type ValidFlag = {
+  email_fmt_err: boolean
+  email_len_err: boolean
+  pass_len_err: boolean
+  pass_min_len_err: boolean
+}
 
 const cookie = new Cookie()
 
@@ -15,6 +23,10 @@ export default function AuthForm() {
   const [password, setPassword] = useState<string>('')
   const [isLogin, setIsLogin] = useState<boolean>(true)
   const [errFlag, setErrFlag] = useState<boolean>(false)
+  const [emailFmtErr, setEmailFmtErr] = useState(false)
+  const [emailLenErr, setEmailLenErr] = useState(false)
+  const [passLenErr, setPassLenErr] = useState(false)
+  const [passMinLenErr, setPassMinLenErr] = useState(false)
   const setObjective = useStore((state) => state.setObjective)
   const setProfile = useStore((state) => state.setProfile)
 
@@ -22,7 +34,20 @@ export default function AuthForm() {
 
   const clickHandler = async() => {
     const { signup, login } = useAuth(email, password)
+    const { authValidation } = useAuthValidation(email, password)
     setErrFlag(false)
+    setEmailFmtErr(false)
+    setEmailLenErr(false)
+    setPassLenErr(false)
+    setPassMinLenErr(false)
+    
+    const { email_fmt_err, email_len_err, pass_len_err, pass_min_len_err } = authValidation()
+    if(email_fmt_err){ setEmailFmtErr(true) }
+    if(email_len_err){ setEmailLenErr(true) }
+    if(pass_len_err){ setPassLenErr(true) }
+    if(pass_min_len_err){ setPassMinLenErr(true) }
+    if(email_fmt_err || email_len_err || pass_len_err || pass_min_len_err)return
+
     if(isLogin){
       await login()
       if(cookie.get("access_token") === "undefined"){
@@ -47,9 +72,14 @@ export default function AuthForm() {
         <input type="text" id="email" placeholder="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)}
                className="outline-none p-2 rounded-md border-stone-400 border-2"
         />
+        <div className="text-red-400 text-sm">{emailLenErr ? "メールアドレスを入力してください" : ""}</div>
+        <div className="text-red-400 text-sm">{emailFmtErr && !emailLenErr ? "メールアドレスの形式が正しくありません" : ""}</div>
+        <div></div>
         <input type="password" id="password" placeholder="パスワード" value={password} onChange={(e) => setPassword(e.target.value)}
                className="outline-none p-2 rounded-md border-stone-400 border-2"
         />
+        <div className="text-red-400 text-sm">{passLenErr ? "パスワードを入力してください" : ""}</div>
+        <div className="text-red-400 text-sm">{passMinLenErr && !passLenErr ? "パスワードは6文字以上で入力してください" : ""}</div>
         <div className="text-red-400 text-sm">{errFlag ? "認証に失敗しました" : ""}</div>
         <button onClick={() => clickHandler()}
                className=" text-white w-full p-2 rounded-md bg-stone-800 " 

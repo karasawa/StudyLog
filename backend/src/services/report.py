@@ -53,7 +53,7 @@ def create_pie(
 def create_bar(study_list=List[study_schema.Study]) -> str:
     dummy_days_list = x_axis_setting()
     
-    study_times = study_service.plot_report(study_list)
+    study_times = study_service.sum_study_times(study_list)
 
     time_list = y_axis_setting(dummy_days_list, study_times)
 
@@ -83,7 +83,8 @@ def conv_day_format(dummy_days_list=List[str]) -> List[str]:
         if conv_day[3] == "0":
             conv_day = conv_day[:3] + conv_day[-1]
         if conv_day[0] == "0":
-            conv_day = conv_day[1:].replace("-", "/")
+            conv_day = conv_day[1:]
+        conv_day = conv_day.replace("-", "/")
         days_list.append(conv_day)
     return days_list
 
@@ -102,6 +103,9 @@ def y_axis_setting(
     time_list = []
     counter = 0
     for day in dummy_days_list:
+        if counter == len(study_times):
+            time_list.append(0)
+            continue
         while study_times[counter]["date"] < day:
             counter += 1
         if counter < len(study_times) and day == study_times[counter]["date"]:
